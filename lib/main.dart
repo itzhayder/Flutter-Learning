@@ -1,53 +1,109 @@
 import 'package:flutter/material.dart';
 
 void main() => runApp(MaterialApp(
-  home: Home(),
-));
+      home: NinjaId(),
+    ));
 
-class Home extends StatelessWidget {
+class NinjaId extends StatefulWidget {
+  @override
+  _NinjaIdState createState() => _NinjaIdState();
+}
+
+class _NinjaIdState extends State<NinjaId> {
+  int ninjaLevel = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey[900],
       appBar: AppBar(
-        title: Text("My App"),
+        title: Text("Ninja ID"),
         centerTitle: true,
-        backgroundColor: Colors.red[600],
+        elevation: 0.0,
+        backgroundColor: Colors.grey[850],
       ),
-      body: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Expanded(child: Image.asset('assets/photo-1.jpg')),
-          Expanded(
-            child: Container(
-              padding: EdgeInsets.all(40.0),
-              color: Colors.redAccent,
-              child: Text("1"),
+      body: Padding(
+        padding: EdgeInsets.fromLTRB(30.0, 40.0, 10.0, 0.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Text(
+              "NAME",
+              style: TextStyle(
+                color: Colors.grey[200],
+                letterSpacing: 2.0,
+                fontSize: 14.0,
+              ),
             ),
-          ),
-          Expanded(
-            child: Container(
-              padding: EdgeInsets.all(40.0),
-              color: Colors.amber,
-              child: Text("2"),
+            SizedBox(
+              height: 10.0,
             ),
-          ),
-          Expanded(
-            child: Container(
-              padding: EdgeInsets.all(40.0),
-              color: Colors.blue,
-              child: Text("3"),
+            Text(
+              "Hayder Ali",
+              style: TextStyle(
+                color: Colors.amberAccent,
+                letterSpacing: 2.0,
+                fontSize: 30.0,
+                fontWeight: FontWeight.bold,
+              ),
             ),
-          ),
-        ],
+            SizedBox(
+              height: 30.0,
+            ),
+            Text(
+              "NINJA LEVEL",
+              style: TextStyle(
+                color: Colors.grey[200],
+                letterSpacing: 2.0,
+                fontSize: 14.0,
+              ),
+            ),
+            SizedBox(
+              height: 10.0,
+            ),
+            Text(
+              "$ninjaLevel",
+              style: TextStyle(
+                color: Colors.amberAccent,
+                letterSpacing: 2.0,
+                fontSize: 30.0,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            SizedBox(
+              height: 30,
+            ),
+            Row(
+              children: <Widget>[
+                Icon(
+                  Icons.email,
+                  color: Colors.grey[200],
+                ),
+                SizedBox(
+                  width: 10.0,
+                ),
+                Text(
+                  "hayderaliovi@gmail.com",
+                  style: TextStyle(
+                    color: Colors.grey[200],
+                    fontSize: 16.0,
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: Center(
-          child: Text("Click"),
+        onPressed: () {
+          setState(() {
+            ninjaLevel++;
+          });
+        },
+        child: Icon(
+          Icons.add,
         ),
-        backgroundColor: Colors.red[600],
       ),
     );
   }
 }
-
