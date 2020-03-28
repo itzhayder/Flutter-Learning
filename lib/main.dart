@@ -1,108 +1,45 @@
 import 'package:flutter/material.dart';
+import 'quote.dart';
+import 'quote_card.dart';
 
 void main() => runApp(MaterialApp(
-      home: NinjaId(),
+      home: Quote(),
     ));
 
-class NinjaId extends StatefulWidget {
+class Quote extends StatefulWidget {
   @override
-  _NinjaIdState createState() => _NinjaIdState();
+  _QuoteState createState() => _QuoteState();
 }
 
-class _NinjaIdState extends State<NinjaId> {
-  int ninjaLevel = 0;
+class _QuoteState extends State<Quote> {
+  List<GenerateQuote> quotes = [
+    GenerateQuote(author: "Hayder", text: "I love playing Dota 2"),
+    GenerateQuote(author: "Nafisa", text: "I love doing makeup"),
+    GenerateQuote(author: "Risad", text: "I love designing in illustrator"),
+    GenerateQuote(author: "Turjo", text: "I love eating anything"),
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[900],
+      backgroundColor: Colors.grey[200],
       appBar: AppBar(
-        title: Text("Ninja ID"),
+        title: Text("Quote App"),
         centerTitle: true,
         elevation: 0.0,
-        backgroundColor: Colors.grey[850],
+        backgroundColor: Colors.red[400],
       ),
-      body: Padding(
-        padding: EdgeInsets.fromLTRB(30.0, 40.0, 10.0, 0.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Text(
-              "NAME",
-              style: TextStyle(
-                color: Colors.grey[200],
-                letterSpacing: 2.0,
-                fontSize: 14.0,
-              ),
-            ),
-            SizedBox(
-              height: 10.0,
-            ),
-            Text(
-              "Hayder Ali",
-              style: TextStyle(
-                color: Colors.amberAccent,
-                letterSpacing: 2.0,
-                fontSize: 30.0,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            SizedBox(
-              height: 30.0,
-            ),
-            Text(
-              "NINJA LEVEL",
-              style: TextStyle(
-                color: Colors.grey[200],
-                letterSpacing: 2.0,
-                fontSize: 14.0,
-              ),
-            ),
-            SizedBox(
-              height: 10.0,
-            ),
-            Text(
-              "$ninjaLevel",
-              style: TextStyle(
-                color: Colors.amberAccent,
-                letterSpacing: 2.0,
-                fontSize: 30.0,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            SizedBox(
-              height: 30,
-            ),
-            Row(
-              children: <Widget>[
-                Icon(
-                  Icons.email,
-                  color: Colors.grey[200],
-                ),
-                SizedBox(
-                  width: 10.0,
-                ),
-                Text(
-                  "hayderaliovi@gmail.com",
-                  style: TextStyle(
-                    color: Colors.grey[200],
-                    fontSize: 16.0,
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          setState(() {
-            ninjaLevel++;
-          });
-        },
-        child: Icon(
-          Icons.add,
-        ),
+      body: Column(
+        children: quotes
+            .map((quote) => QuoteCard(
+                  quote: quote,
+                  delete: () {
+                    setState(() {
+                      quotes.remove(quote);
+                    });
+                  },
+                ))
+            .toList(),
       ),
     );
   }
